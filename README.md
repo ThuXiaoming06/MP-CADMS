@@ -1,6 +1,5 @@
-We developed an M-protein Computer-Aided Diagnosis and monitoring System (MP-CADMS) based on deep learning. 
-Here we release our Python codes for peer review. The code will be improved over time. 
-And soon we will also make our self-collected dataset of single-modal IFE data available here.
+We developed an M-protein Computer-Aided Diagnosis and monitoring System (MP-CADMS) based on deep learning, which employs two modal data of immunofixation electrophoresis (IFE) and structured clinical information (SCI) to achieve the diagnosis and monitoring of M-protein. The SCI involves 2 demographics (age and gender) and 33 test items (sFLC-κ, sFLC-λ, sFLC-κ/λ, α1, α2, Alb%, β1, β2, γ, A/G, F-κ, F-λ, M-Pro, PT, PT%, INR, Fbg, APTT, APTT-R, TT, D-Dimer, Cr(E), Ca, HGB, CK, NT-proBNP, LD, UA, CRP/hsCRP, Alb, 24hUPr, U-Pro, 24hU-V). The diagnosis tasks contain the M-protein presence, positive-isotype and positive-severity diagnosis. And the monitoring tasks contain the recurrence-recovery and positive-severity prediction.
+Here we release our Python codes for research reading. The code will be improved over time. 
 
 System Requirement
 =======
@@ -10,3 +9,14 @@ System Requirement
 
 Usage Instructions
 =======
+**Pretrain:** The model architecture of IFE extractor employs the self-supervised learning paradigm. In the pretraining stage, both 7,689 unlabeled and 8,943 labeled IFE images are used to train a variational autoencoder (VAE), through completing the pretext task of reconstructing the input iamge pixels. Then the encoder and bottleneck in pretrained VAE are fine-tuned to perform the downstream tasks of diagnosis and monitoring. One can run IFE_pretrain.py to accomplish the pretraining task.
+
+**M-protein Presence Diagnosis:** For the IFE-modality, the pretrained encoder and bottleneck are used to extract the features. And for the SCI-modality, one-dimensional SCI is first transformred into two-dimensional matrix, where the diagonal elements correspond to the original values, and the non-diagonal elements correspond to the correlation between any two test items. Then a ResNet is employed to extract the features of SCI matrix. Two modal features are fused via several stacked transformer blocks and projected to two probabilities of negative and positive classes. One can run PresDiag_Multimodal.py to accomplish the presence diagnosis task. And we also provide the single-modality versions for this task, one can run PresDiag_CSD_modal.py and PresDiag_IFE_modal.py to accomplish single-modal diagnosis.
+
+**Multitask of Positive-Isotype (PI) and Positive-Severity (PS) Diagnosis:** The extraction and fusion of two modal features are the same as the above description. Since a positive sample possesses both isotype and severity attributes simultaneously, we introduce a multitask learning paradigm to complete the two diagnosis tasks. One branch(PS) projects the fused features into three probabilities corresponding to WP, P(+) and SP(++) classes, while the other branch (PI) projects the fused features into eight probabilities corresponding to IgAκ, IgAλ, IgGκ, IgGλ, IgMκ, IgMλ, κ and λ isotypes. One can run Multitask_Multimodal.py to accomplish the presence diagnosis task. And we also provide the single-modality versions for these two tasks, one can run Multitask_CSD_modal.py and Multitask_IFE_modal.py to accomplish single-modal diagnosis.
+
+**Monitoring:** For a patient's temporal sequence, the extraction and fusion of IFE and SCI features at each time remain consistent with the above description, except that the information of diagnosis labels is also introduced. The three-modal fusion features of all historical time are integrated through a time-aware LSTM. Then the integrated features serve as the initial value conditions of Neural ODE for continuous prediction, including the prediction of recurrence-recovery and PS. One can run Monitor_PPPS.py to achieve the monitoring tasks.
+
+Data and Results
+=======
+The datasets from four participating hospitals cannot be shared publicly due to privacy restrictions. Here we released the self-collected (SC) dataset, which is collected from scientific publications (English and Chinese), and various social media platforms. The SC dataset contains 271 images, i.e., 45 negative and 226 positive (25 IgAκ, 28 IgAλ, 66 IgGκ, 39 IgGλ, 27 IgMκ, 14 IgMλ, 9 κ and 18 λ). One can use this dataset for the IFE-modality validation towards presence and PI diagnosis. The expected results can refer to Extended Table 2 in our manuscript.
