@@ -174,7 +174,7 @@ If you use this code, please cite:
 For any questions, please contact: **axm24@mails.tsinghua.edu.cn**, **zhangchen01@tsinghua.edu.cn**.
 
 
-```
 ---
+
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
