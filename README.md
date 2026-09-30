@@ -13,6 +13,7 @@ Here we release our Python codes for research reading. The code will be improved
 - [Repository structure](#repository-structure)
 - [Citation](#citation)
 - [Contact](#contact)
+- [License](#license)
 
 ## System Requirements
 This section lists (i) software dependencies and OS (with versions), (ii) versions tested, and (iii) any required non-standard hardware.
@@ -147,6 +148,7 @@ All reported runtimes are **approximate wall-clock times** observed on our works
 .
 ├── requirements.txt
 ├── Model Card.md
+├── LICENSE
 ├── demo_dataset/
 ├── SC_dataset/
 ├── Model_Develop/
@@ -170,3 +172,9 @@ If you use this code, please cite:
 
 ## Contact
 For any questions, please contact: **axm24@mails.tsinghua.edu.cn**, **zhangchen01@tsinghua.edu.cn**.
+
+
+```
+---
+## License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
