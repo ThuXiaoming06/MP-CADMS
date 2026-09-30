@@ -73,7 +73,7 @@ On a typical desktop (e.g., 8–16 CPU cores, 16–32 GB RAM, stable broadband),
 
 - We have also provised a demo dataset containing 50 samples (`demo_dataset/`), i.e., 10 negative and 40 positive (6 IgAκ, 6 IgAλ, 6 IgGκ, 6 IgGλ, 5 IgMκ, 5 IgMλ, 3 κ and 3 λ; 8 WP, 20 P(+), and 12 SP(++)).
 
----
+
 
 ## Quick start
 
@@ -90,7 +90,7 @@ Open the diagnosis demo, then upload the cropped IFE images and fill in the corr
 - **HF (Diagnosis):** https://huggingface.co/spaces/THUxiaoming/MP-CADMS-Diagnosis
 - **HF (Monitoring):** https://huggingface.co/spaces/THUxiaoming/MP-CADMS-Monitoring
 
----
+
 
 ## Usage Instructions
 ### Model Development and evaluation
@@ -127,7 +127,7 @@ The folder `Data_Imputer/` contains the implementation of **Remasker**, a **labe
 - `remasker_eva2.py`: imputation of missing values in the **validation sets** (e.g., internal/external validation) using a trained Remasker model.
 
 > Note: Remasker does not use outcome labels at any stage; it models the joint distribution of SCI variables only, which helps avoid label leakage in the imputation procedure.
----
+
 
 ## Expected runtime
 
@@ -140,7 +140,7 @@ All reported runtimes are **approximate wall-clock times** observed on our works
 - **Inference (internal + external validation):** ~5–15 minutes on a single GPU  
 - **Full end-to-end reproduction (all modules + evaluations):** ~24–48 hours
 
----
+
 
 ## Repository structure
 
@@ -155,7 +155,7 @@ All reported runtimes are **approximate wall-clock times** observed on our works
 ├── Data_Imputer/
 └── Statistical_Analysis/
 ```
----
+
 
 ## Citation
 
@@ -172,9 +172,6 @@ If you use this code, please cite:
 
 ## Contact
 For any questions, please contact: **axm24@mails.tsinghua.edu.cn**, **zhangchen01@tsinghua.edu.cn**.
-
-
----
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
