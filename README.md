@@ -40,7 +40,7 @@ This section lists (i) software dependencies and OS (with versions), (ii) versio
   - Inference can be performed on a **single GPU**.  
   - CPU-only execution is possible for limited testing but will be substantially slower.
 
----
+
 
 ## Installation
 
@@ -66,7 +66,7 @@ On a typical desktop (e.g., 8–16 CPU cores, 16–32 GB RAM, stable broadband),
 - **~5-15 minutes** if using pre-built wheels (most common), excluding the time to download large packages (notably PyTorch/CUDA).
 - **~10-30 minutes** if you need to reinstall/resolve CUDA-related packages or if network bandwidth is limited.
  
----
+
 
 ## Datasets
 - The datasets from four participating hospitals cannot be shared publicly due to privacy restrictions. Here we released the self-collected (SC) dataset, which is collected from scientific publications (English and Chinese), and various social media platforms. The SC dataset contains 271 images, i.e., 45 negative and 226 positive (25 IgAκ, 28 IgAλ, 66 IgGκ, 39 IgGλ, 27 IgMκ, 14 IgMλ, 9 κ and 18 λ). You can use this dataset for the IFE-modality validation towards presence and PI diagnosis.
@@ -145,7 +145,7 @@ All reported runtimes are **approximate wall-clock times** observed on our works
 ## Repository structure
 
 ```
-.
+MP-CADMS/
 ├── requirements.txt
 ├── Model Card.md
 ├── LICENSE
