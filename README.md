@@ -119,14 +119,22 @@ We provide all scripts used for statistical significance testing in the folder `
 - `ps_AUROC_delong_pvalues.py`: DeLong’s test for AUROC in **3-class severity grading** (PS) and/or **severity-progression monitoring** tasks.
 - `ps_others_permutation_pvalues.py`: permutation tests for **AUPRC, sensitivity, specificity, top-1 accuracy, F1-score, precision** in 3-class severity grading and/or severity-progression monitoring tasks.
 
-### Data imputation (Remasker)
+### Data imputation (ReMasker)
 
-The folder `Data_Imputer/` contains the implementation of **Remasker**, a **label-agnostic** SCI missing-value imputer based on a **masked autoencoder**. Both the encoder and decoder adopt Transformer-based architectures. Remasker learns the dependencies among SCI variables by reconstructing randomly masked entries from the observed (non-missing) values, and then uses the learned cross-variable correlations to impute missing indicators.
+Missing values in the SCI data were imputed using **ReMasker** (Du et al., ICLR 2024), a masked-autoencoder-based method for tabular data imputation. ReMasker models dependencies among SCI variables by reconstructing randomly masked entries from the observed values.
 
-- `tony_eva_example.py`: training script for Remasker and imputation of missing values in the **training set**.
-- `remasker_eva2.py`: imputation of missing values in the **validation sets** (e.g., internal/external validation) using a trained Remasker model.
+The original ReMasker implementation is **not redistributed in this repository**. Users should obtain the source code directly from the original ReMasker repository:
 
-> Note: Remasker does not use outcome labels at any stage; it models the joint distribution of SCI variables only, which helps avoid label leakage in the imputation procedure.
+https://github.com/alps-lab/remasker
+
+The folder `Data_Imputer/` contains only the MP-CADMS-specific data preparation and execution script used to apply ReMasker to the SCI data:
+
+- `mpcadms_remasker_imputation.py`: prepares the SCI variables, processes missing-value indicators and numerical inputs, invokes the externally obtained ReMasker implementation for imputation, and exports the imputed SCI data.
+
+> **Note:** ReMasker was applied without using diagnostic or monitoring outcome labels during the imputation procedure. The original ReMasker implementation should be obtained and used in accordance with the terms specified by its original authors.
+
+**Reference:**  
+Du, T., Melis, L. & Wang, T. *ReMasker: Imputing Tabular Data with Masked Autoencoding*. International Conference on Learning Representations (ICLR), 2024.
 
 
 ## Expected runtime
